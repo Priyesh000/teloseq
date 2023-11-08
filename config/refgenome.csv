@@ -1,0 +1,4 @@
+refgenome_id,refgenome_path,anchor_tsv
+refactored_ref,data/refgenome/automatic/refactored_ref.fasta,data/refgenome/automatic/refactored_ref.tsv
+hg002_chm13,data/refgenome/automatic/hg002_chm13.fasta,data/refgenome/automatic/hg002_chm13.tsv
+hg002_paternal,data/refgenome/automatic/hg002_paternal.fasta,data/refgenome/automatic/hg002_paternal.tsv

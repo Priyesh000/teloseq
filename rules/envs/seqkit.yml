@@ -1,0 +1,7 @@
+# an example 
+
+channels:
+    - conda-forge
+    - bioconda
+dependencies:
+    - seqkit==0.14.0

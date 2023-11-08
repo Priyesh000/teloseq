@@ -1,0 +1,33 @@
+name: teloseq
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python>= 3.7
+  - pysam
+  - polars>=0.18,<=0.19
+  - pyarrow
+  - snakemake==7.18.2 
+  - click
+  - pandas
+  - pybedtools
+  - requests
+  - seqkit
+  - pyfastx
+  - tslearn
+  - scikit-learn
+  - biopython==1.77
+  - python-box
+  - tqdm
+  - pybedtools
+  - pip
+  - pip:
+      - pip
+      - python-gitlab
+      - ont-fast5-api
+      - regex
+      - wget==3.2
+      - intervaltree==3.1.0
+      - loguru==0.7.0
+  

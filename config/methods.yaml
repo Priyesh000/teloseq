@@ -1,0 +1,40 @@
+enzymatic00:
+  description: ""
+  enzyme1: MobI
+  enzyme2: AluI
+  sheard: False
+
+enzymatic01:
+  description: ""
+  enzyme1: None
+  enzyme2: None
+  sheard: False
+
+sheared_adaptive:
+  description: ""
+  enzyme1: None
+  enzyme2: None
+  sheard: gtube
+
+sheared_control:
+  description: ""
+  enzyme1: None
+  enzyme2: None
+  sheard: gtube
+
+cas9_00:
+  description: ""
+  guides: config/cas9_guides.csv
+
+tailseq00_cas900:
+  description: "The cas9 prep was started with 3 ug, and the tailseq prep was started with 3 ug. I took half of each of the final libraries and combined onto a single flow cell with 1396 pores"
+
+tailseq_BamHI:
+  description: "The prep was started with 3 ug and the final library quantification was 284 ng loaded onto the flow cell (not exact). 1436 pore count (edited) "
+
+cas9_01:
+  description: "For cas9 lsk110: (this is not the adapter that comes with the cas9 kit, and there might be a reason for this)
+The prep was started with 3 ug and the final library quantification was 425 ng (I would not use this, it is never accurate for cas9). 1399 pore count"
+
+tailseq01_bamHI: 
+  description: "Ligased tail -seq adptor, followed by BamHI disgest and END-prep and dA-tail. LSK-110 adpt"

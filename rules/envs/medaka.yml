@@ -1,0 +1,8 @@
+channels:
+    - default
+    - conda-forge
+    - bioconda
+dependencies:
+    - medaka
+    - vcflib
+    - tabix

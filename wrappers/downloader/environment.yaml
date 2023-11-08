@@ -1,0 +1,9 @@
+channels:
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  - pip:
+    - loguru
+    - tqdm 
+    - pysam 

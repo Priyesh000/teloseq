@@ -1,0 +1,213 @@
+
+SAVEPATH:     'data/20230720_final_refectored'
+THREADS:      20
+
+FILTER:
+    min_length: 500
+    max_length: 1500000
+    
+NCRF:
+    NCRF:
+        exec_path: '/home/OXFORDNANOLABS/prughani/git/NoiseCancellingRepeatFinder'
+        motif: "telomeric:TTAGGG"      ## motif_name:seq
+        minlength: 50
+        minmratio: 0.85
+        positionalevents: True
+        scoring: 'nanopore'
+        stats: 'events'
+    ncrf_sort:
+        sortby: 'mratio+'
+
+
+CLAIR3:
+#   url: 'https://cdn.oxfordnanoportal.com/software/analysis/models/clair3/r1041_e82_400bps_sup_v420.tar.gz'
+  url: 'http://www.bio8.cs.hku.hk/clair3/clair3_models/r941_prom_hac_g360+g422_1235.tar.gz'
+
+# WF_HUMAN_VARIATION:
+#   # exec_path: '/home/OXFORDNANOLABS/prughani/git/wf-human-variation/' ## {epi2me-labs/wf-human-variation, [or local path]}
+#   exec_path: 'epi2me-labs/wf-human-variation'
+#   # basecaller_cfg: 'dna_r10.4.1_e8.2_400bps_sup@4.2.0'
+# #   sv_types: "INS,DEL,DUP,BND,INV"
+#   max_sv_length: 1000000
+# #   bin_size: 10
+#   use_longphase: "true"
+#   threads: 30
+#   phase_vcf: True
+#   snp: True
+# #   sv: True
+# #   methyl: True
+# #   cnv: True
+# #   str: True
+#   phase_methyl: False
+#   nextflow_opts:
+#     # profile: singularity ## {singularity, standard}
+#     profile: singularity
+#     revision: 'v1.7.2'
+#     resume: True
+
+
+
+# KMER_COUNTS:
+#     SPLIT_BY_ARMS:
+#         skip_supplementary: True
+#         skip_secondary: True
+#         tol: 20_000
+#         min_mq: 40
+#     TELOMERIC_KMERS:
+#         min_k: 4       
+#         max_k: 16     
+#         threads: 4     ## number threads per job 
+#         max_motifs: False  
+#         max_p_adjusted: 0.05
+#         min_repeats: 2 
+        
+# ALT_VARIANTS:
+#     alt_motifs: 'config/alt_motifs.txt'
+#     NCRF:
+#         motif: "telomeric:TTAGGG"      ## motif_name:seq
+#         minlength: 12
+#         minmratio: 0.99
+#         positionalevents: True
+#         scoring: 'nanopore'
+#         stats: 'events'
+#     ncrf_sort:
+#         sortby: 'mratio+'
+## -- Mappers -- ##
+
+MODKIT:
+    path_exec: /mmfs1/uslinuxhome/prughani/git/projects/2020/202009_salk_telomere/git_repo/dist/modkit 
+    cpg: True
+    ignore: "h"  ## Ignore 5hmC
+    combine-strands: True 
+    threads: 10
+
+MINIMAP2:
+    index:
+        I: 8G
+
+    mapping:
+        a: True
+        x: 'map-ont'
+        t: 30
+        N: 2
+        Y: True
+        y: True ##  Write tags to alignment header
+        L: True
+
+# BLASTn:
+#     makeblastdb:
+#         parse_seqids: False
+#     blastn:
+#         outfmt: '"6 qseqid qlen qstart qend  sstrand sseqid slen sstart send length qcovs qcovhsp gaps mismatch positive pident evalue bitscore score nident"'
+#         strand: 'both'
+#         sorthits: 0                     ## Sort by evalue
+#         sorthsps: 4                     ## Sort by hsp subject start
+#         #filtering_db: 'TTAGGG'          ## BLAST database containing filtering elements (i.e.: repeats)
+#         max_target_seqs: 3
+#         subject_besthit: True          ## Turn on best hit per subject sequence
+#         num_threads: 20
+# KMC:
+#     kmer_count:
+#         k: 6
+#         m: 50
+#         ci: 4       ## exclude k-mers occurring less than. FOR REF ci=0
+#         cs: 1000     ## maximal value of a counter (default: 255)
+#         b: False    ## turn off transformation of k-mers into canonical form
+#     simple:
+#         union: False
+
+MOSDEPTH:
+    threads:        10
+    no-per-base:    True
+    mapq:           5
+    fast-mode:      True
+
+SAMTOOLS:
+    merge:
+        threads: 20
+# SNIFFLES:
+#     threads: 20
+
+# NANOCALLER:
+#     preset: ont
+#     mode: ont
+#     sequencing: ont
+#     supplementary: False
+#     neighbor_threshold: '0.4,0.6'
+#     threads: 4
+
+
+# FULL_LENGTH:
+#     mapping-qual: 5
+#     telomere_padding: 500
+#     subtelomere-padding: 500
+#     subtelomere-span:
+#         chm13: 1000
+#         chm13Mask: 100
+
+# MEDAKA: 
+#     regions:
+#         min_read_coverage: 10
+#     medaka_variant:
+#         threads:      5  ## threads per region
+#         s:            "r941_min_sup_variant_g507"     #"r941_prom_high_g360"
+#         m:            "r941_min_sup_variant_g507" #"r941_prom_high_g360"
+#         U:            True  ## Unfiltered
+#         p:            True  ## Phase
+    
+# HAPCUT2:
+#     extractHAIRS:
+#         qvoffset: 33        
+#         mbq:  10                ## minimum base quality to consider
+#         mmq: 10                 ## minimum read mapping quality
+#         indels: 1               ## extract reads spanning INDELS, default is 0
+#         triallelic: 0           ## include variants with genotype 1/2 for parsing, default 0
+#         ep: 1                   ## set to 1 to estimate HMM parameters from aligned reads (only with long reads), default = 0
+#         hom: 0                  ## set to 1 to include homozygous variants for processing, default = 0 (only heterozygous)
+#     pruned:
+#         min_mismatch_qual: 30
+#         min_switch_qual: 30
+
+WHATSHAP:
+    whatshap_tag:
+        ignore-linked-read:     True
+        # sample:                SAMPLE
+        ignore-read-groups:     True
+        linked-read-distance-cutoff: False
+        tag-supplementary: True
+#     polyphase:
+#         ploidy: 2
+#         include-haploid-sets: True      ## Include the phase set information for every single haplotype in a custom VCF format field 'HS'
+#         indels: False                    ## Also phase indels (default: do not phase indels)
+#         mapping-quality: 4
+#         min-overlap: 2                  ## Minimum required read overlap for internal read clustering stage (default: 2). 
+#         ce-refinements: 1               ## Maximum number of refinement steps for internal read clustering stage (default: 1).
+#         block-cut-sensitivity: 4         ## Strategy to determine block borders. 0 yields the longest blocks with more switch errors, 5 has the shortest blocks with lowest switch error rate (default: 4).
+#         threads: 4
+#         # chromosome: 'chr1'
+
+# # FREEBAYES:
+#     freebayes:
+#         ploidy: 2
+#         min-alternate-count: 4
+#         min-coverage: 5
+#         min-alternate-fraction: 0.05  ## default 0.05
+#         # –no-indels
+#         # –no-mnsp
+#         # –no-complex
+
+EXTRACT_READ_IDS:
+    threads: 3
+    keep_unmapped: False 
+    keep_supplementary: False  
+    keep_secondary: False
+    strandedness: 'both'
+    min_length: 2500
+    min_qmap: 0
+
+
+## -- Input files -- ## 
+BASECALLS: 'datasets.salk_cancer.refactored.mods.csv'
+FILE_LAYOUT: 'config/file_layout.yaml'
+GENOMES: 'config/refgenome.csv'
+ENZYMES: 'config/flowcell_restriction_enzyme.csv'

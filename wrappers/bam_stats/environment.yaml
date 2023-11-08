@@ -1,0 +1,10 @@
+# an example 
+
+channels:
+    - conda-forge
+    - bioconda
+    - default
+dependencies:
+    - python==3.7.*
+    - pandas 
+    - pysam>=0.16.0.1

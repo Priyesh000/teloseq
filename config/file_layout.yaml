@@ -1,0 +1,169 @@
+
+basecalls:
+    fastq: '{run_id}.{dataset_id}.fastq.gz'
+    filter: '{run_id}.{dataset_id}.filter.fasta'
+    fasta: '{run_id}.{dataset_id}.digest.fasta'
+    summary: '{run_id}.{dataset_id}.csv.gz'
+    stats: '{run_id}.{dataset_id}.stats.csv'
+    agg_stats: '{run_id}.{dataset_id}.agg_stats.csv' 
+
+modbases:
+    bam: '{run_id}.{dataset_id}.{refgenome_id}.mod.mmi.bam'
+    merged_bam: '{dataset_id}.{refgenome_id}.mod.mmi.merged.bam'
+    
+    pdf: '{dataset_id}.{refgenome_id}.mod.mmi.merged.pdf'
+    csv: '{dataset_id}.{refgenome_id}.mod.mmi.merged.csv'
+    
+    bam_idx: '{dataset_id}.{refgenome_id}.mod.mmi.merged.bam.bai'
+    bed: '{dataset_id}.{refgenome_id}.mod.mmi.mod.merged.bed'
+
+TVR:
+    png: "{dataset_id}.{refgenome_id}.tvr_signal.norm.png"
+    csv: "{dataset_id}.{refgenome_id}.tvr_signal.norm.parquet"
+    raw: "{dataset_id}.{refgenome_id}.tvr_signal.raw_data.parquet"
+
+refgenome:
+    fasta: '{refgenome_id}.fa'
+    tsv: '{refgenome_id}.tsv'
+    bed: '{refgenome_id}.chrom_end.bed'
+    mmi_idx: '{refgenome_id}.mmi.idx'
+
+
+NoiseCancellingRepeatFinder:
+    ncrf: '{run_id}.{dataset_id}.unfiltered.ncrf'
+    summary: '{run_id}.{dataset_id}.summary.txt'
+    summary_filter: '{run_id}.{dataset_id}.summary.filter.txt'
+    agg: '{run_id}.{dataset_id}.summary.agg.csv'
+    bed: '{run_id}.{dataset_id}.summary.agg.bed'
+    variants: '{run_id}.{dataset_id}.telomeric_variants.csv'
+
+mapping:
+    mmi_bam: '{run_id}.{dataset_id}.{refgenome_id}.mmi.bam'
+    name_sorted_bam: '{run_id}.{dataset_id}.{refgenome_id}.mmi.name_sorted.bam'
+    mmi_bam_idx: '{run_id}.{dataset_id}.{refgenome_id}.mmi.bam.bai'
+    mmi_stat: '{run_id}.{dataset_id}.{refgenome_id}.mmi.align_stats.csv'
+    mmi_stat_arms: '{run_id}.{dataset_id}.{refgenome_id}.mmi.arms.align_stats.csv'
+    mmi_cov: '{run_id}.{dataset_id}.{refgenome_id}.mmi.restricted.mosdepth.global.dist.txt'
+    minimap: '{run_id}.{dataset_id}.{refgenome_id}.mmap.bam'
+    
+misc:
+    chromo_arms: 'chromosome.arms.bed'
+
+telomeric:
+    fasta: '{run_id}.{dataset_id}.fasta'
+    lor: '{run_id}.{dataset_id}.lor.txt'
+    telo_only: '{run_id}.{dataset_id}.telomeres_only.fasta'
+    fa_merged: '{dataset_id}.telomeres_only.merged.fasta'
+
+merged_bams:
+    bam: '{dataset_id}.{refgenome_id}.anchor.telomeres.merged.bam'
+    bam_idx: '{dataset_id}.{refgenome_id}.anchor.telomeres.merged.bam.bai'
+
+reports:
+    report: '{dataset_id}/per_run/{run_id}.{dataset_id}.{refgenome_id}.report.py.ipynb'
+    html: '{dataset_id}/per_run/{run_id}.{dataset_id}.{refgenome_id}.report.py.html'    
+    stats_csv: '{dataset_id}/per_run/{run_id}.{dataset_id}.{refgenome_id}.report.basecall_stats.csv'
+    ncrf: '{dataset_id}/per_sample/{dataset_id}.summary.agg.merged.csv'
+    basecall_stats: '{dataset_id}/per_sample/{dataset_id}.basecall.stats.merged.csv'
+
+    bam_stats: '{dataset_id}/per_sample/{dataset_id}.{refgenome_id}.mmi.anchor.filtered.align_stats.merged.csv'
+    report_merge: '{dataset_id}/per_sample/{dataset_id}.{refgenome_id}.merged.report.py.ipynb'
+    stats_csv_merged: '{dataset_id}/per_sample/{dataset_id}.{refgenome_id}.report.basecall_stats.csv'
+    
+    png: "{dataset_id}/per_sample/{dataset_id}.{refgenome_id}.tvr_signal.norm.png"
+    csv: "{dataset_id}/per_sample/{dataset_id}.{refgenome_id}.tvr_signal.norm.parquet"
+
+    phased_csv: '{dataset_id}/per_sample/phased/{dataset_id}.phased.filtered.stats.csv'
+    phased_png: "{dataset_id}/per_sample/phased/{dataset_id}.phased.filtered.telomere_lengths.svg"
+
+merged_telomeres:
+    fasta: "{dataset_id}.telomeres_only.merged.fasta"
+
+wf_human_var:
+    ref: refgenome/{refgenome_id}.fasta
+    ref_tsv: refgenome/{refgenome_id}.anchors.tsv
+    ref_bed: refgenome/{refgenome_id}.anchors.bed
+
+    ref_idx: refgenome/{refgenome_id}.fasta.fai
+    ref_mmi: refgenome/{refgenome_id}.fasta.mmi
+
+    bam: '{dataset_id}.{refgenome_id}.parental.bam'
+    bam_idx: '{dataset_id}.{refgenome_id}.parental.bam.bai'
+    output: '{dataset_id}_{refgenome_id}/'
+    snp: '{dataset_id}_{refgenome_id}/merge_output.vcf.gz'
+    phased_snp: '{dataset_id}_{refgenome_id}/phased_merge_output.vcf.gz'
+    phased_bam: '{dataset_id}_{refgenome_id}/phased_output.bam'
+    sv: '{dataset_id}_{refgenome_id}/{dataset_id}.{refgenome_id}.wf_sv.vcf.gz'
+    str: '{dataset_id}_{refgenome_id}/{dataset_id}.{refgenome_id}.wf_str.vcf.gz'
+    methyl: '{dataset_id}_{refgenome_id}/{dataset_id}.{refgenome_id}.methyl.cpg.bed.gz'
+
+
+
+models:
+  clair: 'r941_prom_hac_g360+g422_1235/'
+
+
+
+alt_variants:
+    ncrf:  '{run_id}.{dataset_id}.variants.ncrf'
+    summary: '{run_id}.{dataset_id}.variants.ncrf.summary.tsv'
+
+variants:
+    bam: '{dataset_id}.{refgenome_id}.combined.full_length.bam'
+#     coverage: '{dataset_id}.{refgenome_id}.combined.full_lengthq.coverage.tsv'
+#     regions: '{dataset_id}.{refgenome_id}/tmp/{regions}.done'
+#     medaka_tmp: '{dataset_id}.{refgenome_id}/{regions}/round_1_phased.vcf'
+#     medaka: '{dataset_id}.{refgenome_id}/aggregate_phased.vcf.gz'
+#     medaka_decomp: '{dataset_id}.{refgenome_id}/aggregate_phased.vcf'
+#     phased_bam_hapcut: '{dataset_id}.{refgenome_id}.hapcut2.phased.bam'
+#     phased_bam_medaka: '{dataset_id}.{refgenome_id}.medaka.phased.bam'
+#     hdf: '{dataset_id}.{refgenome_id}.medaka.phased.hdf'
+#     consensus: '{dataset_id}.{refgenome_id}.medaka.phased.consensus.fasta'
+
+#     haplotag: '{dataset_id}.{refgenome_id}.phased.haplotag.tsv'
+#     aln_stats: '{dataset_id}.{refgenome_id}.phased.stat.csv'
+#     hapcut_vcf: '{dataset_id}.{refgenome_id}.phased.hapcut2.vcf'
+#     hapcut2_extract: '{dataset_id}.{refgenome_id}.phased.hapcut.frag.hairs'
+#     hapcut2_block: '{dataset_id}.{refgenome_id}.phased.hapcut.frag.hapcut2_blocks'
+#     hapcut2_block_vcf: '{dataset_id}.{refgenome_id}.phased.hapcut.frag.hapcut2_blocks.phased.VCF'
+#     hapcut2_block_vcf_bgzip: '{dataset_id}.{refgenome_id}.phased.hapcut.frag.hapcut2_blocks.phased.VCF.gz'
+#     pruned: '{dataset_id}.{refgenome_id}.phased.hapcut.frag.hapcut2_blocks.pruned'
+
+#     vg: '{dataset_id}.{refgenome_id}.phased.hapcut.frag.hapcut2_blocks.vg'
+
+#     nanocaller_final: 'nanocaller/{regions}/{dataset_id}.{refgenome_id}.{regions}.nanocaller.final.vcf.gz'
+#     nanocaller_snp: 'nanocaller/{regions}/{dataset_id}.{refgenome_id}.{regions}.nanocaller.snps.phased.vcf.gz'
+#     nanocaller_indels: 'nanocaller/{regions}/{dataset_id}.{refgenome_id}.{regions}.nanocaller.indels.vcf.gz'
+
+#     nanocaller_final_idx: 'nanocaller/{regions}/{dataset_id}.{refgenome_id}.{regions}.nanocaller.final.vcf.gz.tbi'
+#     nanocaller_snp_idx: 'nanocaller/{regions}/{dataset_id}.{refgenome_id}.{regions}.nanocaller.snps.phased.vcf.gz.tbi'
+#     nanocaller_indels_idx: 'nanocaller/{regions}/{dataset_id}.{refgenome_id}.{regions}.nanocaller.indels.vcf.gz.tbi'
+
+#     nanocaller_agg_final: 'nanocaller/{dataset_id}.{refgenome_id}.nanocaller.final.agg.vcf.gz'
+#     nanocaller_agg_snp: 'nanocaller/{dataset_id}.{refgenome_id}.nanocaller.snps.phased.agg.vcf.gz'
+#     nanocaller_agg_indels: 'nanocaller/{dataset_id}.{refgenome_id}.nanocaller.indels.agg.vcf.gz'
+
+#     polyphase: 'nanocaller/{dataset_id}.{refgenome_id}.nanocaller.final.agg.polyphased.vcf.gz'
+
+# polyphase:
+#     freebayes_vcf: 'polyphase/{dataset_id}.{refgenome_id}.freebayes.vcf'
+#     polyphase: 'polyphase/{dataset_id}.{refgenome_id}.freebayes.polyphased.vcf.gz'
+#     tagged_bam: 'polyphase/{dataset_id}.{refgenome_id}.freebayes.polyphased.tagged.bam'
+
+telomere_variants:
+    # merged: '{dataset_id}.{refgenome_id}.mmi.full_length.merged.bam'
+    fa_arms: 'groupby_arms/{dataset_id}.{refgenome_id}/{dataset_id}.{refgenome_id}.mmi.full_length.merged.{arms}.fasta'
+    report: 'kmer_counts/{dataset_id}.{refgenome_id}/{dataset_id}.{refgenome_id}.mmi.full_length.merged.{arms}.final_report.tsv'
+    jellyfish: 'kmer_counts/{dataset_id}.{refgenome_id}/{dataset_id}.{refgenome_id}.mmi.full_length.merged.{arms}.jf.count_filter.tsv.gz'
+    
+    final_report: '{dataset_id}.{refgenome_id}.telomeric_kmer.agg_final_report.tsv'
+
+stats:
+    agg_stat: '{dataset_id}.stats.agg.csv'
+
+
+filterbam:
+    filtered_name_sorted: '{run_id}.{dataset_id}.{refgenome_id}.mmi.name_sorted.anchor.filtered.bam'
+    bam: '{run_id}.{dataset_id}.{refgenome_id}.mmi.anchor.filtered.bam'
+    bam_idx: '{run_id}.{dataset_id}.{refgenome_id}.mmi.anchor.filtered.bam.bai'
+    stats: '{run_id}.{dataset_id}.{refgenome_id}.mmi.anchor.filtered.align_stats.csv'

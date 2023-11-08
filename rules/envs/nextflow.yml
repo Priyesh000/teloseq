@@ -1,0 +1,8 @@
+channels:
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  - samtools
+  - nextflow
+  - mosdepth 

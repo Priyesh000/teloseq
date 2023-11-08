@@ -1,0 +1,9 @@
+channels:
+    - default
+    - conda-forge
+    - bioconda
+dependencies:
+    - clair3
+    - python==3.9.0
+    - whatshap==1.7
+    - samtools==1.15.1
