@@ -49,7 +49,7 @@ rule anchor_minimap2_stats:
     threads: 5
     # wrapper: 'file:wrappers/bam_stats'
     shell:
-        'python scripts/bam_stats.v2.py '
+        'python scripts/bam_stats.py '
         '-t {threads} '
         '--stdout '
         '-c '

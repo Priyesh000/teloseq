@@ -62,7 +62,6 @@ def plot_figure(df, savefile_name):
 @click.argument('output_file',)
 def main(bedfile, methyl_bed, output_file, min_read_cov):
     """
-    
     BEDFILE: 'Path to chrom ends bed file'
     METHTYL_BED: 'Path to methyl bed file from modkit'
     OUTPUT_FILE: 'Save file name'

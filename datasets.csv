@@ -1,3 +1,3 @@
-run_id,dataset_id,refgenome_id,fastq_path,mod_fastq
-FAV29018,HG002,hg002_chm13,incomming/FASTQ//20221122_FAV29018_CT.bonito.0.6.2.rk_R941C.fastq.gz,/mmfs1/data/active/projects/202009_salk_telomere/MODS/20221122_FAV29018_CT.dorado.dna_r9.4.1_e8_supv3.3_5mC_5hmC.fastq.gz
-FAR62417,HG002,hg002_chm13,incomming/FASTQ/20221110_FAR62417_CT.bonito.0.6.2.rk_R941C.fastq.gz,/mmfs1/data/active/projects/202009_salk_telomere/MODS/20221110_FAR62417_CT.dorado.dna_r9.4.1_e8_supv3.3_5mC_5hmC.fastq.gz
+run_id,dataset_id,refgenome_id,enzyme,fastq_path,mod_fastq
+FAV29018,HG002,full,EcoRV,incomming/FASTQ//20221122_FAV29018_CT.bonito.0.6.2.rk_R941C.fastq.gz,/mmfs1/data/active/projects/202009_salk_telomere/MODS/20221122_FAV29018_CT.dorado.dna_r9.4.1_e8_supv3.3_5mC_5hmC.fastq.gz
+FAR62417,HG002,full,EcoRV,incomming/FASTQ/20221110_FAR62417_CT.bonito.0.6.2.rk_R941C.fastq.gz,/mmfs1/data/active/projects/202009_salk_telomere/MODS/20221110_FAR62417_CT.dorado.dna_r9.4.1_e8_supv3.3_5mC_5hmC.fastq.gz

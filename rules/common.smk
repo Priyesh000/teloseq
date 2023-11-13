@@ -3,7 +3,6 @@ import yaml
 from pathlib import Path
 
 
-
 def create_input_dataframes():
     """Create input dataframes to be igested by snakemake"""
     def read_csv(path, index=None):
@@ -14,8 +13,8 @@ def create_input_dataframes():
 
     ref_df = read_csv(config['GENOMES'], 'refgenome_id')
     basecalls_df = read_csv(config['BASECALLS'])
-    enzymes_df = read_csv(config['ENZYMES']) ## Enzymes list
-    basecalls_df = basecalls_df.merge(enzymes_df, on='run_id', how='left')
+    # enzymes_df = read_csv(config['ENZYMES']) ## Enzymes list
+    # basecalls_df = basecalls_df.merge(enzymes_df, on='run_id', how='left')
     basecalls_df = basecalls_df.set_index(['run_id','dataset_id'], drop=False)
 
     ref_l = ref_df.refgenome_id.unique()
@@ -60,7 +59,7 @@ def create_input_dataframes():
     )
 
     if len(mapping_df) != len(basecalls_df_stacked):
-        print(mapping_df)
+        # print(mapping_df)
         raise ValueError(f"The refgenome_id from {config['GENOMES']} does not match The refgenome_id in {config['BASECALLS']}")
     mapping_df = mapping_df.set_index(['run_id','dataset_id', 'refgenome_id'], drop=False)  
     # print(basecalls_df, ref_df, mapping_df)
@@ -168,7 +167,7 @@ def kmc_opts(config, flag='-', skip=[]):
             tmp.append('{}{}{} '.format(flag, k, v))
     return ' '.join(tmp)
 
-def expand_rows_with_lookup(paths, df, is_aggreated=False):
+def expand_rows_with_lookup(paths, df, is_aggregated=False):
     """
     Use wildcards to 'lookup' a value in a dataframe. The wildcard keys must
     match the dataframe index. 
@@ -176,20 +175,22 @@ def expand_rows_with_lookup(paths, df, is_aggreated=False):
     """
     index_names = tuple(df.index.names)
     def __inner(wildcards):
-
+        # print("df:", df, "wildcards:", wildcards.keys(), wildcards)
+        keys, values = zip(*wildcards.items())
         rows = df.xs(
-                wildcards,
-                level=list(wildcards.keys()),
+                values,
+                # level=list(wildcards.keys())[0] if len(wildcards.keys()) == 1 else wildcards.keys(),
+                level=keys,
                 drop_level=True)
-        # print(rows)
         results = [
             paths.format(**x._asdict()) 
             for x in rows.reset_index(drop=True).itertuples()]
-        if not is_aggreated:
+        if not is_aggregated:
             assert(len(rows) == 1)             
         return set(results)
 
     return __inner
+
 
 def get_column_value(column, df, wildcards):
     res = df.loc[(wildcards), column]

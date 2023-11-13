@@ -39,7 +39,7 @@ rule minimap2_stats:
     threads: config['MINIMAP2']['mapping']['t']
     # wrapper: 'file:wrappers/bam_stats'
     shell:
-        'python scripts/bam_stats.v2.py '
+        'python scripts/bam_stats.py '
         '-t {threads} '
         '--stdout '
         '-c '
@@ -208,7 +208,7 @@ def get_subtelomere_span(wildcards):
 
 
 rule merge_bams_files:
-    input: expand_rows_with_lookup(paths.filterbam.bam, mapping_df, is_aggreated=True)
+    input: expand_rows_with_lookup(paths.filterbam.bam, mapping_df, is_aggregated=True)
     output: paths.merged_bams.bam
     conda: 'envs/samtools.yml'
     threads: config['MINIMAP2']['mapping']['t']

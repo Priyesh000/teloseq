@@ -8,7 +8,7 @@ use rule minimap2_mapping as modbase_mapping with:
     output: paths.modbases.bam
 
 rule merge_bam:
-    input: expand_rows_with_lookup(paths.modbases.bam, mapping_df, is_aggreated=True )
+    input: expand_rows_with_lookup(paths.modbases.bam, mapping_df, is_aggregated=True )
     output: paths.modbases.merged_bam
     shell:
         "samtools merge -o {output} {input}"

@@ -13,7 +13,7 @@
 
 rule combine_telomere_only:
     '''Combine telomere sequences into a single file '''
-    input: expand_rows_with_lookup(paths.telomeric.telo_only, mapping_df, is_aggreated=True)
+    input: expand_rows_with_lookup(paths.telomeric.telo_only, mapping_df, is_aggregated=True)
     output: paths.telomeric.fa_merged
     shell:
         'cat {input} > {output}'

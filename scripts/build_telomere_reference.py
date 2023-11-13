@@ -177,10 +177,10 @@ class Record:
         FORMAT: chr.arm|genome|config:start-end
         """
         if self.arm == 'M':
-            return f'{self.chrom}.{self.arm}|{self.genome.genome}|{self.config}:None-None'
+            return f'{self.chrom}.{self.arm}|{self.genome.genome}|{self.config}|None-None'
         elif self.arm == "Q":
-            return f'{self.chrom}.{self.arm}|{self.genome.genome}|{self.config}:{self.seq_coords.end}-{self.seq_coords.begin}'
-        return f'{self.chrom}.{self.arm}|{self.genome.genome}|{self.config}:{self.seq_coords.begin}-{self.seq_coords.end}'
+            return f'{self.chrom}.{self.arm}|{self.genome.genome}|{self.config}|{self.seq_coords.end}-{self.seq_coords.begin}'
+        return f'{self.chrom}.{self.arm}|{self.genome.genome}|{self.config}|{self.seq_coords.begin}-{self.seq_coords.end}'
 
     def format_sequence(self) -> str:
         """Fasta formated sequence"""

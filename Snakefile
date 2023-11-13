@@ -78,7 +78,7 @@ rule modbases:
         expand_rows(paths.modbases.csv, mapping_df)
 
 rule TVR:
-    """Telomere Variant Repeats on filtered and merged bams"""
+    """Telomere Variant Repeats on filtered bam and merged bams"""
     input:
         expand_rows(paths.reports.png, mapping_df),  
         expand_rows(paths.reports.csv, mapping_df)
@@ -90,10 +90,10 @@ rule hap:
         expand_rows(paths.wf_human_var.snp, hap_df),
 
 
-rule var:
-    """Identify telomeric variance"""
-    input: 
-        expand_rows(paths.telomeric.telo_only, basecalls_df),
-        expand_rows(paths.telomeric.fa_merged, mapping_df),
-        # expand_rows(paths.telomere_variants.bam_merged, mapping_df),
-        expand_rows(paths.telomere_variants.final_report, mapping_df)
+# rule var:
+#     """Identify telomeric variance"""
+#     input: 
+#         expand_rows(paths.telomeric.telo_only, basecalls_df),
+#         expand_rows(paths.telomeric.fa_merged, mapping_df),
+#         # expand_rows(paths.telomere_variants.bam_merged, mapping_df),
+#         expand_rows(paths.telomere_variants.final_report, mapping_df)

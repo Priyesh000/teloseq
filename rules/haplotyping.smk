@@ -1,5 +1,5 @@
 rule merge_telomeres_fasta:
-    input: expand_rows_with_lookup(paths.telomeric.fasta, basecalls_df, is_aggreated=True)
+    input: expand_rows_with_lookup(paths.telomeric.fasta, basecalls_df, is_aggregated=True)
     output: paths.merged_telomeres.fasta
     shell:
         "cat {input} > {output}"
@@ -79,7 +79,8 @@ rule run_clair3:
         _ = paths.wf_human_var.bam_idx,
         ref = paths.wf_human_var.ref,
         _ref_idx = paths.wf_human_var.ref_idx,
-        bed_region = paths.wf_human_var.ref_bed
+        bed_region = paths.wf_human_var.ref_bed,
+        # model_path = paths.models.clair,
     output: 
         paths.wf_human_var.snp,
         paths.wf_human_var.phased_snp,
@@ -106,5 +107,3 @@ rule run_clair3:
         # "--use_whatshap_for_final_output_phasing "
         # "&& "
         # "if [[ -e {params.output} ]]; then "
-
-

@@ -6,6 +6,7 @@ rule report_per_run:
         bam = paths.filterbam.stats
     output: paths.reports.stats_csv
     # output: paths
+    conda: "envs/jupyter.yml"
     log:
         notebook=paths.reports.report 
     notebook:
@@ -17,14 +18,14 @@ rule report_to_html:
     params:
         dirpath = lambda w, output: Path(output[0]).parent,
         filename = lambda w, output: Path(output[0]).name,
-
+    conda: "envs/jupyter.yml"
     shell:
         'jupyter nbconvert --to html --template lab --no-input {input} --output {params.filename} --output-dir {params.dirpath}'
 
 
 rule merge_telomeres_stats:
     input: 
-        expand_rows_with_lookup(paths.NoiseCancellingRepeatFinder.agg, basecalls_df, is_aggreated=True)
+        expand_rows_with_lookup(paths.NoiseCancellingRepeatFinder.agg, basecalls_df, is_aggregated=True)
     output: paths.reports.ncrf
     run:
         import polars as pl 
@@ -35,12 +36,12 @@ rule merge_telomeres_stats:
 
 use rule merge_telomeres_stats as merge_basecall_stats with:
     input: 
-        expand_rows_with_lookup(paths.basecalls.stats, basecalls_df, is_aggreated=True)
+        expand_rows_with_lookup(paths.basecalls.stats, basecalls_df, is_aggregated=True)
     output: paths.reports.basecall_stats
 
 use rule merge_telomeres_stats as merge_bam_stats with:
     input: 
-        expand_rows_with_lookup(paths.filterbam.stats, mapping_df, is_aggreated=True)
+        expand_rows_with_lookup(paths.filterbam.stats, mapping_df, is_aggregated=True)
     output: paths.reports.bam_stats 
 
 use rule report_per_run as report_per_sample with:

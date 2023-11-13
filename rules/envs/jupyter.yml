@@ -1,12 +1,10 @@
-name: 202009_salk_telomere_jupyter
 channels:
   - conda-forge
   - bioconda
   - defaults
-  - pyviz
+
 dependencies:
-  - python == 3.6
   - matplotlib
   - jupyterlab
   - seaborn
-  - hvplot
+  

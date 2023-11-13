@@ -21,6 +21,9 @@ dependencies:
   - python-box
   - tqdm
   - pybedtools
+  - matplotlib
+  - seaborn
+  - jupyterlab
   - pip
   - pip:
       - pip

@@ -1,7 +1,5 @@
-
-
 rule agg_all_stats:
-    input: expand_rows_with_lookup(paths.basecalls.agg_stats, basecalls_df, is_aggreated=True) 
+    input: expand_rows_with_lookup(paths.basecalls.agg_stats, basecalls_df, is_aggregated=True) 
     output: paths.stats.agg_stat
     # conda: 
     run:

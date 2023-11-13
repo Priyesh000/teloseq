@@ -81,35 +81,35 @@ rule extract_telomeres_only:
 ##                alternative telomere variants             ##
 ##############################################################
 
-def load_variants():
-    fn = config['ALT_VARIANTS']['alt_motifs']
-    motifs = []
-    with open(fn) as fh:
-        for motif in fh:
-            motifs.append(motif.strip())
-    return ' '.join(motifs)
+# def load_variants():
+#     fn = config['ALT_VARIANTS']['alt_motifs']
+#     motifs = []
+#     with open(fn) as fh:
+#         for motif in fh:
+#             motifs.append(motif.strip())
+#     return ' '.join(motifs)
 
-rule alt_variants_ncrf:
-    input: paths.telomeric.fasta
-    output: paths.alt_variants.ncrf
-    params:
-        opts = get_opts(config['ALT_VARIANTS']['NCRF'], flag='--',fill_gap='=', skip_opts=['motif', 'exec_path']),
-        opts_sort = get_opts(config['ALT_VARIANTS']['ncrf_sort']),
-        motif = load_variants(), 
-        exec_path = config['NCRF']['NCRF']['exec_path'],
-    conda: 'envs/ncrf.yml'
-    shell:
-        'cat {input} | {params.exec_path}/NCRF {params.motif} {params.opts}  > {output}'
+# rule alt_variants_ncrf:
+#     input: paths.telomeric.fasta
+#     output: paths.alt_variants.ncrf
+#     params:
+#         opts = get_opts(config['ALT_VARIANTS']['NCRF'], flag='--',fill_gap='=', skip_opts=['motif', 'exec_path']),
+#         opts_sort = get_opts(config['ALT_VARIANTS']['ncrf_sort']),
+#         motif = load_variants(), 
+#         exec_path = config['NCRF']['NCRF']['exec_path'],
+#     conda: 'envs/ncrf.yml'
+#     shell:
+#         'cat {input} | {params.exec_path}/NCRF {params.motif} {params.opts}  > {output}'
 
 
-rule alt_variants_ncrf_summary:
-    input: paths.alt_variants.ncrf
-    output: paths.alt_variants.summary
-    params: 
-        opts = '',
-        exec_path = config['NCRF']['NCRF']['exec_path'],
-    conda:  'envs/ncrf.yml'
-    shell:
-        "python --version && "
-        'python {params.exec_path}/ncrf_cat.py {input} | python {params.exec_path}/ncrf_summary.py > {output}'
+# rule alt_variants_ncrf_summary:
+#     input: paths.alt_variants.ncrf
+#     output: paths.alt_variants.summary
+#     params: 
+#         opts = '',
+#         exec_path = config['NCRF']['NCRF']['exec_path'],
+#     conda:  'envs/ncrf.yml'
+#     shell:
+#         "python --version && "
+#         'python {params.exec_path}/ncrf_cat.py {input} | python {params.exec_path}/ncrf_summary.py > {output}'
 

@@ -81,17 +81,9 @@ def digest(fasta, enzyme , output, prefix):
             if enzyme_obj is None:
                 fa_out.write(str(rec)+'\n')
             else:
-                ## TODO: Multiple theard,code  if not slow
+                ## TODO: Multiple processing, if not slow
                 for name, seq, data in digest_sequence(rec, enzyme_obj):
-                # seq_obj = convert_seq_obj(rec.sequence)
-                # ori_len = len(rec.sequence)
-                # results=enzyme_obj.catalyse(seq_obj, linear = True)
-                # for n, seq in enumerate(results):
-                #     name = f"{rec.name}/{enzyme_obj.__name__}/{n}"
-                #     data = [
-                #         name, ori_len, len(seq),enzyme_obj.__name__,
-                #         enzyme_obj.elucidate(), len(results)
-                #         ]
+
                     dlog.write('\t'.join(map(str,data))+"\n")
                     fa_out.write(fasta_format(name, seq))
 
