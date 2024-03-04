@@ -13,18 +13,20 @@ __version__ = '0.0.1'
 DATETIME = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 LOGFILE = Path(__file__).name.replace(".py", f"{DATETIME}.log")
 
+
+
 IS_PRIMARY = ~0x100  ## remove secondary flag
 IS_SECOUNDARY = 0x100
 IS_SUPPLEMENTARY = 0x800
 
 
-# # BAM= 'data/20230712_refactored/mapping/FAU74032.E6E7_66_2.refactored_ref.mmi.bam'
-# BAM = Path('data/20230712_refactored/mapping/FAU74032.E6E7_66_2.refactored_ref.mmi.name_sorted.bam')
-# # BAM = Path('data/20230712_refactored/mapping/FAU74032.E6E7_66_2.refactored_ref.mmi.filtered.bam')
+# BAM= 'data/20230712_refactored/mapping/FAU74032.E6E7_66_2.refactored_ref.mmi.bam'
+BAM = Path('data/20230712_refactored/mapping/FAU74032.E6E7_66_2.refactored_ref.mmi.name_sorted.bam')
+# BAM = Path('data/20230712_refactored/mapping/FAU74032.E6E7_66_2.refactored_ref.mmi.filtered.bam')
 
-# NCRF = 'data/20230712_refactored/NoiseCancellingRepeatFinder/FAU74032.E6E7_66_2.summary.agg.csv' 
-# bed_region = 'data/refgenome/automatic/refactored_ref.tsv'
-# OUTBAM = Path('data/20230712_refactored/mapping/FAU74032.E6E7_66_2.refactored_ref.mmi.filtered.bam')
+NCRF = 'data/20230712_refactored/NoiseCancellingRepeatFinder/FAU74032.E6E7_66_2.summary.agg.csv' 
+bed_region = 'data/refgenome/automatic/refactored_ref.tsv'
+OUTBAM = Path('data/20230712_refactored/mapping/FAU74032.E6E7_66_2.refactored_ref.mmi.filtered.bam')
 
 
 ## TODO:
@@ -389,7 +391,7 @@ def main(bamfile: str, ncrf: str, tsv: str, bamout: str, debug: bool, skip_suppl
     out.close()
             # print(rec.query_name, reference_name)
     logger.info(f"Number of reads passed: {total_passed}")
-    logger.info(f"Filtered bam file written to: {bamout}")
+    logger.info(f"Filtered bam file written to: {BAM.with_suffix('.filtered.bam')}")
         # break
 
 if __name__ == '__main__':
