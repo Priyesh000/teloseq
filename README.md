@@ -7,18 +7,6 @@ The pipeline operates on basecalled fastq files and progresses through multiple 
 It is imperative to note that, specifically for R9 data, the utilization of the custom model is indispensable during the basecalling step. Conversely, for R10 data, default basecalling using the SUP model as an integral component of the Dorado basecaller suffices. This nuanced approach ensures optimal performance and accuracy tailored to the characteristics of each sequencing dataset.
 
 
-## ADD CONTENTS TABLE HERE
-
-TODO:
-- [ ] Add contents table
-- [ ] Add installation instructions
-- [ ] Add usage instructions
-- [ ] Add example config file
-- [ ] Add example scripts
-- [ ] Add example data
-- [ ] Add example output
-
-
 # System requirements
 
 ## Hardware requirements
